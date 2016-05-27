@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#addbtn{
+    float: left;
+}
+hr {
+    border: none; /* Убираем границу */
+    background-color: #ddd; /* Цвет линии */
+    color: #ddd; /* Цвет линии для IE6-7 */
+    height: 1px; /* Толщина линии */
+    margin: 5px 0 5px 0;
+}
+#general{
+    display: flex;
+    border: 2px solid;
+    border-color: #ddd;
+    border-radius: 3px;
+}
+header{
+    height: 50px;
+    background-color: #0271c1;
+    margin: 0 0 5px 0;
+}
+#middle{
+    height: 100%;
+    float: left;
+    padding: 5px;
+    margin-right: 2px;
+    border-right: 2px solid;
+    border-left: 2px solid;
+    border-color: #ddd;
+}
+#left-bar{
+    height: 100%;
+    float: left;
+}
+#right-bar{
+    height: 100%;
+    float: right;
+}
+footer{
+    height: 60px;
+    background-color: darkslategray;
+    margin: 5px 0 0 0;
+}
+<!-- post stylesheet -->
+#post-title{
+    
+}
+#post-data{
+    
+}
+#author{
+    float: left;   
+}
+
+#post-date{
+    float: right;
+}
+#post-content{
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+#more-link{
+    
+}
+#engine{
+    margin-top: 15px;
+    margin-right: 30px;
+    float: right;
+    color: #fff;
+}
+<!-- left-bar -->
+#menu{
+    padding-top: 5px;
+}
+
+<!-- signin page -->
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
