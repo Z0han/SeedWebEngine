@@ -3,6 +3,7 @@ package com.company.Service.Impl;
 import com.company.DAO.PostDAO;
 import com.company.Service.PostService;
 import com.company.entity.Post;
+import com.company.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class PostServiceImpl implements PostService{
     private PostDAO postDAO;
 
     @Override
-    public void addPost(int authorid, String title, String text) {
-        Post post = new Post(authorid, title, text);
+    public void addPost(User user, String title, String text) {
+        Post post = new Post(user.getId(), title, text, user.getNickname());
         postDAO.addPost(post);
     }
 
@@ -41,5 +42,10 @@ public class PostServiceImpl implements PostService{
     @Override
     public List<Post> list(String pattern) {
         return null;
+    }
+
+    @Override
+    public Post getSinglePostById(int id) {
+        return postDAO.getSinglePostById(id);
     }
 }

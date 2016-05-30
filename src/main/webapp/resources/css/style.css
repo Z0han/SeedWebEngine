@@ -2,9 +2,6 @@ body{
     margin: 0;
     padding: 0;
 }
-#addbtn{
-    float: left;
-}
 hr {
     border: none; /* Убираем границу */
     background-color: #ddd; /* Цвет линии */
@@ -18,11 +15,26 @@ hr {
     border-color: #ddd;
     border-radius: 3px;
 }
+/* header */
 header{
     height: 50px;
     background-color: #0271c1;
     margin: 0 0 5px 0;
 }
+
+.head-btn{
+    float: left;
+    margin-right: 2px;
+    margin-top: 7px;
+}
+
+.auth-btn{
+    float: right;
+    margin-left: 2px;
+    margin-top: 7px;
+}
+
+/*  general container */
 #middle{
     height: 100%;
     float: left;
@@ -45,7 +57,7 @@ footer{
     background-color: darkslategray;
     margin: 5px 0 0 0;
 }
-<!-- post stylesheet -->
+/* post stylesheet */
 #post-title{
     
 }
@@ -66,18 +78,18 @@ footer{
 #more-link{
     
 }
-#engine{
-    margin-top: 15px;
+#copyright{
+    margin-top: 20px;
     margin-right: 30px;
     float: right;
     color: #fff;
 }
-<!-- left-bar -->
+/*  left-bar */
 #menu{
     padding-top: 5px;
 }
 
-<!-- signin page -->
+/* signin page */
 
 .form-signin {
   max-width: 330px;

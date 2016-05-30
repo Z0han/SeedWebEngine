@@ -8,5 +8,6 @@ import com.company.entity.Settings;
 public interface SettingsService {
 
     Settings getSettings();
-    void setSettings(Settings s);
+    void setSettings(String siteTitle, String sitePattern, String siteDescription);
+    void setSettings(Settings newSettings);
 }

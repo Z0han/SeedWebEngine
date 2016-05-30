@@ -23,8 +23,16 @@ public class Settings implements Serializable{
     @Column(name = "theme_pattern_type")
     private String themePatternType;
 
+    @Column(name = "site_description")
+    private String siteDescription;
 
     public Settings() {}
+
+    public Settings(String siteTitle, String themePatternType, String siteDescription){
+        this.siteTitle = siteTitle;
+        this.themePatternType = themePatternType;
+        this.siteDescription = siteDescription;
+    }
 
     public String getSiteTitle() {
         return siteTitle;
@@ -40,5 +48,13 @@ public class Settings implements Serializable{
 
     public void setThemePatternType(String themePatternType) {
         this.themePatternType = themePatternType;
+    }
+
+    public String getSiteDescription() {
+        return siteDescription;
+    }
+
+    public void setSiteDescription(String siteDescription) {
+        this.siteDescription = siteDescription;
     }
 }

@@ -15,5 +15,6 @@ public interface PostDAO {
     void deletePost(int id);
     List<Post> getList();
     List<Post> getList(String pattern);
+    Post getSinglePostById(int id);
 
 }

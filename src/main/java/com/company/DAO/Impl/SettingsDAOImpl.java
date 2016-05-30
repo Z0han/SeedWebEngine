@@ -25,7 +25,19 @@ public class SettingsDAOImpl implements SettingsDAO{
     }
 
     @Override
-    public void setSettings(Settings settings) {
-
+    public void setSettings(Settings newSettings) {
+        Query query = em.createQuery("select s FROM Settings s WHERE s.id = 1");
+        Settings settingsFromDataBase = (Settings) query.getSingleResult();
+        settingsFromDataBase.setSiteTitle(newSettings.getSiteTitle());
+        settingsFromDataBase.setThemePatternType(newSettings.getThemePatternType());
+        settingsFromDataBase.setSiteDescription(newSettings.getSiteDescription());
+        try{
+            em.getTransaction().begin();
+            em.merge(settingsFromDataBase);
+            em.getTransaction().commit();
+        }catch (Exception ex){
+            em.getTransaction().rollback();
+            ex.printStackTrace();
+        }
     }
 }

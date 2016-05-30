@@ -1,6 +1,7 @@
 package com.company.Service;
 
 import com.company.entity.Post;
+import com.company.entity.User;
 
 import java.util.List;
 
@@ -9,10 +10,11 @@ import java.util.List;
  */
 public interface PostService {
 
-    void addPost(int authorid, String title, String text);
+    void addPost(User user, String title, String text);
     void updatePost(Post p);
     void removePost(int id);
     List<Post> list ();
     List<Post> list (String pattern);
+    Post getSinglePostById(int id);
 
 }

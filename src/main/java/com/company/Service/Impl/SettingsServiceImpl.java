@@ -21,7 +21,12 @@ public class SettingsServiceImpl implements SettingsService {
     }
 
     @Override
-    public void setSettings(Settings s) {
-        settingsDAO.setSettings(s);
+    public void setSettings(String st, String sp,String sd) {
+        settingsDAO.setSettings(new Settings(st, sp, sd));
+    }
+
+    @Override
+    public void setSettings(Settings newSettings) {
+
     }
 }

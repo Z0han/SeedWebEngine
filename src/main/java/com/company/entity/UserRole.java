@@ -6,5 +6,10 @@ package com.company.entity;
  */
 
 public enum UserRole {
-    ANONYMOUS_ROLE, USER_ROLE,ADMIN_ROLE
+    ADMIN,
+    USER,
+    ANONYMOUS;
+
+    UserRole() {
+    }
 }

@@ -8,11 +8,13 @@ import com.company.DAO.UserDAO;
 import com.company.DAO.Impl.UserDAOImpl;
 import com.company.Service.Impl.PostServiceImpl;
 import com.company.Service.Impl.SettingsServiceImpl;
+import com.company.Service.Impl.UserDetailsServiceImpl;
 import com.company.Service.PostService;
 import com.company.Service.SettingsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -79,6 +81,11 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     @Bean
     public SettingsService settingsService(){
         return new SettingsServiceImpl();
+    }
+
+    @Bean
+    public UserDetailsService getUserDetailsService(){
+        return new UserDetailsServiceImpl();
     }
 
     @Bean

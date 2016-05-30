@@ -5,6 +5,7 @@ import com.company.Service.SettingsService;
 import com.company.Service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,35 +34,13 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
-        return new ModelAndView("index", "post", postService.list());
-    }
-
-    @RequestMapping(value = "/addpage", method = RequestMethod.POST)
-    public String addPage(Model model) {
-        return "addpage";
-    }
-
-    @RequestMapping(value = "/addpost", method = RequestMethod.POST)
-    public ModelAndView addPost(@RequestParam(value = "autorId") int authorId,
-                                @RequestParam(value = "title") String title,
-                                @RequestParam(value = "text") String text,
-                                HttpServletRequest request,
-                                HttpServletResponse response) {
-        try {
-            request.setCharacterEncoding("UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            postService.addPost(authorId, title, text);
-            return new ModelAndView("index", "post", postService.list());
-        } catch (Exception ex) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            return null;
-        }
+        return formationPage();
     }
 
     @RequestMapping("/delete")
     public ModelAndView delete(@RequestParam(value="id") int id) {
         postService.removePost(id);
-        return new ModelAndView("index", "post", postService.list());
+        return formationPage();
     }
 
     @RequestMapping(value = "/registration")
@@ -72,20 +51,24 @@ public class MainController {
     @RequestMapping(value = "adduser", method = RequestMethod.POST)
     public ModelAndView addUser(@RequestParam(value = "email") String email,
                                 @RequestParam(value = "password") String pass,
+                                @RequestParam(value = "nick") String nick,
                                 HttpServletRequest request,
                                 HttpServletResponse response){
         try{
-        String md5pass = new DigestUtils().md2Hex(pass);
-        userService.addUser(email,md5pass);
-        return new ModelAndView("index", "post", postService.list());
+            String md5pass = new DigestUtils().md5Hex(pass);
+            userService.addUser(email,md5pass, nick);
+            return formationPage();
         }catch (Exception ex){
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return null;
         }
     }
 
-    @RequestMapping(value = "/settings", method = RequestMethod.POST)
-    public SettingsService settings(){
-        return settingsService;
+    private ModelAndView formationPage(){
+        ModelAndView page = new ModelAndView();
+        page.addObject("post", postService.list());
+        page.addObject("setting", settingsService.getSettings());
+        page.setViewName("index");
+        return page;
     }
 }

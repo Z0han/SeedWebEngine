@@ -18,7 +18,7 @@ public class User implements Serializable{
     private int id;
 
     @Column(name = "username")
-    private String userName;
+    private String userEmail;
 
     @Column(name = "user_password")
     private String userPass;
@@ -29,25 +29,29 @@ public class User implements Serializable{
     @Column(name = "user_role")
     private String role;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     public User() {}
 
-    public User(String userName, String userPass) {
-        this.userName = userName;
+    public User(String userEmail, String userPass, String nick) {
+        this.userEmail = userEmail;
         this.userPass = userPass;
         this.registeredData = new Date() ;
-        this.role = "USER_ROLE";
+        this.role = "USER";
+        this.nickname = nick;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUserPass() {
@@ -72,5 +76,13 @@ public class User implements Serializable{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

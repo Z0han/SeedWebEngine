@@ -13,15 +13,6 @@ import java.util.Date;
 @Table(name = "posts")
 public class Post implements Serializable {
 
-    public Post() {}
-
-    public Post(int authorId, String title, String text) {
-        this.authorId = authorId;
-        this.title = title;
-        this.text = text;
-        this.datePosted = new Date();
-    }
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,8 +25,23 @@ public class Post implements Serializable {
 
     private String text;
 
+    @Column(name = "author_nickname")
+    private String authorNickName;
+
     @Column(name = "date_posted")
     private Date datePosted;
+
+
+    public Post() {}
+
+    public Post(int authorId, String title, String text, String nick) {
+        this.authorId = authorId;
+        this.title = title;
+        this.text = text;
+        this.datePosted = new Date();
+        this.authorNickName = nick;
+    }
+
 
     public Date getDatePosted() {
         return datePosted;
@@ -71,5 +77,13 @@ public class Post implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getAuthorNickName() {
+        return authorNickName;
+    }
+
+    public void setAuthorNickName(String authorNickName) {
+        this.authorNickName = authorNickName;
     }
 }

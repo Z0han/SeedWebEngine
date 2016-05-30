@@ -35,7 +35,7 @@ public class PostDaoImpl  implements PostDAO {
     public void updatePost(Post p) {
         try {
             em.getTransaction().begin();
-            em.persist(p);
+            em.merge(p);
             em.getTransaction().commit();
         }catch (Exception ex){
             em.getTransaction().rollback();
@@ -66,4 +66,10 @@ public class PostDaoImpl  implements PostDAO {
         return null;
     }
 
+    @Override
+    public Post getSinglePostById(int id) {
+        Query query = em.createQuery("select p FROM Post p WHERE p.id = :id");
+        query.setParameter("id", id);
+        return (Post)query.getSingleResult();
+    }
 }

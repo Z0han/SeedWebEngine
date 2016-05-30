@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<c:set value="${setting}" var="setting" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>index</title>
+    <title>${setting.siteTitle} - ${setting.siteDescription}</title>
 
     <!-- Bootstrap -->
     <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
@@ -26,12 +26,42 @@
 </head>
 <body>
 
-    <jsp:include page="header.jsp"></jsp:include>
+<c:import url="header.jsp"/>
 
-    <jsp:include page="threecolumn.jsp"></jsp:include>
+<div class="container">
 
-    <jsp:include page="footer.jsp"></jsp:include>
+    <div class="row" id="general">
+        <c:if test="${setting.themePatternType eq 'threecolumn'}">
+            <c:import url="left-bar.jsp"/>
+            <c:import url="middle.jsp">
+                <c:param name="setting" value="setting"/>
+            </c:import>
+            <c:import url="right-bar.jsp"/>
+        </c:if>
+
+        <c:if test="${setting.themePatternType eq 'twocolumn_left'}">
+            <c:import url="left-bar.jsp"/>
+            <c:import url="middle.jsp">
+                <c:param name="setting" value="setting"/>
+            </c:import>
+        </c:if>
+
+        <c:if test="${setting.themePatternType eq 'twocolumn_right'}">
+            <c:import url="middle.jsp">
+                <c:param name="setting" value="setting"/>
+            </c:import>
+            <c:import url="right-bar.jsp"/>
+        </c:if>
+
+        <c:if test="${setting.themePatternType eq 'singlecolumn'}">
+            <c:import url="middle.jsp">
+                <c:param name="setting" value="setting"/>
+            </c:import>
+        </c:if>
+    </div>
+</div>
+
+<c:import url="footer.jsp"/>
 
 </body>
 </html>
-

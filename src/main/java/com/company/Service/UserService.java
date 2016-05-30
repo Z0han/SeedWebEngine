@@ -9,9 +9,10 @@ import java.util.List;
  */
 public interface UserService {
 
-    void addUser(String email,String pass);
-    void uprateUser(User user);
+    void addUser(String email,String pass, String nick);
+    void updateUser(User user);
     void removeUser(int id);
-    User getUser (int id);
+    User getUserById (int id);
+    User getUserByEmail(String s);
     List<User> getListUser();
 }

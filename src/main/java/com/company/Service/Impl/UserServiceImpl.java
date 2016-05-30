@@ -18,13 +18,13 @@ public class UserServiceImpl implements UserService{
     private UserDAO userDAO;
 
     @Override
-    public void addUser(String email,String pass) {
-        User user = new User(email,pass);
+    public void addUser(String email,String pass, String nick) {
+        User user = new User(email,pass, nick);
         userDAO.addUser(user);
     }
 
     @Override
-    public void uprateUser(User user) {
+    public void updateUser(User user) {
         userDAO.updateUser(user);
     }
 
@@ -34,9 +34,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUser(int id) {
-        User user = userDAO.getUser(id);
-        return user;
+    public User getUserById(int id) {
+        return userDAO.getUserById(id);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userDAO.getUserByEmail(email);
     }
 
     @Override
