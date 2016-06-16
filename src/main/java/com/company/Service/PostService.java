@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface PostService {
 
-    void addPost(User user, String title, String text);
+    void addPost(User user, String title, String text, int categoryId);
     void updatePost(Post p);
     void removePost(int id);
     List<Post> list ();

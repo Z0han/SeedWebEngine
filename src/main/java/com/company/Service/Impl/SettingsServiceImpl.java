@@ -22,7 +22,7 @@ public class SettingsServiceImpl implements SettingsService {
 
     @Override
     public void setSettings(String st, String sp,String sd) {
-        settingsDAO.setSettings(new Settings(st, sp, sd));
+        settingsDAO.setSettings(st, sp, sd);
     }
 
     @Override

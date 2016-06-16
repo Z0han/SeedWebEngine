@@ -1,6 +1,7 @@
 package com.company.DAO.Impl;
 
 import com.company.DAO.PostDAO;
+import com.company.entity.Category;
 import com.company.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,8 +47,7 @@ public class PostDaoImpl  implements PostDAO {
     public void deletePost(int id) {
         try {
             em.getTransaction().begin();
-            Post p = em.find(Post.class, id);
-            em.remove(p);
+            em.remove(em.find(Post.class, id));
             em.getTransaction().commit();
         }catch(Exception ex){
             em.getTransaction().rollback();
@@ -71,5 +71,12 @@ public class PostDaoImpl  implements PostDAO {
         Query query = em.createQuery("select p FROM Post p WHERE p.id = :id");
         query.setParameter("id", id);
         return (Post)query.getSingleResult();
+    }
+
+    @Override
+    public List<Post> getListPostByCategory(Category category) {
+        Query query = em.createQuery("select p FROM Post p WHERE p.category = :category");
+        query.setParameter("category", category);
+        return (List<Post>)query.getResultList();
     }
 }

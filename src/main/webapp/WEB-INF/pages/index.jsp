@@ -22,7 +22,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<c:url value='/resources/js/bootstrap.min.js.css'/>"></script>
+    <script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
 </head>
 <body>
 
@@ -31,33 +31,18 @@
 <div class="container">
 
     <div class="row" id="general">
-        <c:if test="${setting.themePatternType eq 'threecolumn'}">
+        <c:if test="${setting.themePatternType eq 'threecolumn'|| setting.themePatternType eq 'twocolumn_left'}">
             <c:import url="left-bar.jsp"/>
+        </c:if>
+
             <c:import url="middle.jsp">
                 <c:param name="setting" value="setting"/>
             </c:import>
+
+        <c:if test="${setting.themePatternType eq 'threecolumn'|| setting.themePatternType eq 'twocolumn_right'}">
             <c:import url="right-bar.jsp"/>
         </c:if>
 
-        <c:if test="${setting.themePatternType eq 'twocolumn_left'}">
-            <c:import url="left-bar.jsp"/>
-            <c:import url="middle.jsp">
-                <c:param name="setting" value="setting"/>
-            </c:import>
-        </c:if>
-
-        <c:if test="${setting.themePatternType eq 'twocolumn_right'}">
-            <c:import url="middle.jsp">
-                <c:param name="setting" value="setting"/>
-            </c:import>
-            <c:import url="right-bar.jsp"/>
-        </c:if>
-
-        <c:if test="${setting.themePatternType eq 'singlecolumn'}">
-            <c:import url="middle.jsp">
-                <c:param name="setting" value="setting"/>
-            </c:import>
-        </c:if>
     </div>
 </div>
 

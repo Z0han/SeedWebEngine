@@ -15,31 +15,32 @@ public class Post implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "author_id")
-    private int authorId;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
 
     private String title;
 
     private String text;
 
-    @Column(name = "author_nickname")
-    private String authorNickName;
-
     @Column(name = "date_posted")
     private Date datePosted;
+
+    @OneToOne
+    @JoinColumn(name = "category")
+    private Category category;
 
 
     public Post() {}
 
-    public Post(int authorId, String title, String text, String nick) {
-        this.authorId = authorId;
+    public Post(User author, String title, String text, Category category) {
+        this.author = author;
         this.title = title;
         this.text = text;
         this.datePosted = new Date();
-        this.authorNickName = nick;
+        this.category = category;
     }
 
 
@@ -55,12 +56,12 @@ public class Post implements Serializable {
         return id;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public String getTitle() {
@@ -79,11 +80,11 @@ public class Post implements Serializable {
         this.text = text;
     }
 
-    public String getAuthorNickName() {
-        return authorNickName;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setAuthorNickName(String authorNickName) {
-        this.authorNickName = authorNickName;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

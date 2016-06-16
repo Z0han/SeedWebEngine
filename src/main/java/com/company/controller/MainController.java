@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.Service.CategoryService;
 import com.company.Service.PostService;
 import com.company.Service.SettingsService;
 import com.company.Service.UserService;
@@ -16,9 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by User on 12.05.2016.
- */
+
 @Controller
 @RequestMapping("/")
 public class MainController {
@@ -32,6 +31,9 @@ public class MainController {
     @Autowired
     private SettingsService settingsService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
         return formationPage();
@@ -44,11 +46,11 @@ public class MainController {
     }
 
     @RequestMapping(value = "/registration")
-    public String registration(Model model){
+    public String registration(){
         return "registration";
     }
 
-    @RequestMapping(value = "adduser", method = RequestMethod.POST)
+    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     public ModelAndView addUser(@RequestParam(value = "email") String email,
                                 @RequestParam(value = "password") String pass,
                                 @RequestParam(value = "nick") String nick,
@@ -63,6 +65,7 @@ public class MainController {
             return null;
         }
     }
+
 
     private ModelAndView formationPage(){
         ModelAndView page = new ModelAndView();

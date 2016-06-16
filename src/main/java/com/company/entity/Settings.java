@@ -26,9 +26,11 @@ public class Settings implements Serializable{
     @Column(name = "site_description")
     private String siteDescription;
 
-    public Settings() {}
+    private static Settings instance = new Settings();
 
-    public Settings(String siteTitle, String themePatternType, String siteDescription){
+    private Settings() {}
+
+    private Settings(String siteTitle, String themePatternType, String siteDescription){
         this.siteTitle = siteTitle;
         this.themePatternType = themePatternType;
         this.siteDescription = siteDescription;
@@ -57,4 +59,10 @@ public class Settings implements Serializable{
     public void setSiteDescription(String siteDescription) {
         this.siteDescription = siteDescription;
     }
+
+    public static Settings getInstance(){
+        return instance;
+    }
+
+
 }

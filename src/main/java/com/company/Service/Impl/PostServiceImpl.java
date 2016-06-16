@@ -1,6 +1,7 @@
 package com.company.Service.Impl;
 
 import com.company.DAO.PostDAO;
+import com.company.Service.CategoryService;
 import com.company.Service.PostService;
 import com.company.entity.Post;
 import com.company.entity.User;
@@ -18,10 +19,12 @@ public class PostServiceImpl implements PostService{
     @Autowired
     private PostDAO postDAO;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @Override
-    public void addPost(User user, String title, String text) {
-        Post post = new Post(user.getId(), title, text, user.getNickname());
-        postDAO.addPost(post);
+    public void addPost(User user, String title, String text, int categoryId) {
+        postDAO.addPost(new Post(user, title, text, categoryService.getCategoryById(categoryId)));
     }
 
     @Override

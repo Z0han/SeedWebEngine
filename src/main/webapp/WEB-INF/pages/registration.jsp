@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:url value="/adduser" var="registeration" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,7 @@
 <body>
 
     <div class="container" style="width: 300px;">
-        <form action="${registeration}" method="post">
+        <form action="<c:url value="/adduser"/>" method="post">
             <h2 class="form-signin-heading">Please sign up</h2>
             <div class="form-group"><input type="text" class="form-control" name="nick" placeholder="Nick name"></div>
             <div class="form-group"><input type="email" class="form-control" name="email" placeholder="email"></div>

@@ -1,16 +1,12 @@
 package com.company.config;
 
-import com.company.DAO.Impl.SettingsDAOImpl;
-import com.company.DAO.PostDAO;
-import com.company.DAO.Impl.PostDaoImpl;
-import com.company.DAO.SettingsDAO;
-import com.company.DAO.UserDAO;
-import com.company.DAO.Impl.UserDAOImpl;
-import com.company.Service.Impl.PostServiceImpl;
-import com.company.Service.Impl.SettingsServiceImpl;
-import com.company.Service.Impl.UserDetailsServiceImpl;
+import com.company.DAO.*;
+import com.company.DAO.Impl.*;
+import com.company.Service.CategoryService;
+import com.company.Service.Impl.*;
 import com.company.Service.PostService;
 import com.company.Service.SettingsService;
+import com.company.Service.SinglePageService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -58,6 +54,8 @@ public class AppConfig extends WebMvcConfigurerAdapter{
         return resolver;
     }
 
+    /* Data Access Object Beans*/
+
     @Bean
     public PostDAO postDAO(){
         return new PostDaoImpl();
@@ -74,6 +72,19 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     }
 
     @Bean
+    public CategoryDAO categoryDAO(){
+        return new CategoryDAOImpl();
+    }
+
+    @Bean
+    public SinglePageDAO singlePageDAO(){
+        return new SinglePageDaoImpl();
+    }
+
+
+    /* Service Layout Beans */
+
+    @Bean
     public PostService postService() {
         return new PostServiceImpl();
     }
@@ -87,6 +98,17 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     public UserDetailsService getUserDetailsService(){
         return new UserDetailsServiceImpl();
     }
+
+    @Bean
+    public CategoryService categoryService(){
+        return new CategoryServiceImpl();
+    }
+
+    @Bean
+    public SinglePageService singlePageService(){
+        return new SinglePageServiceImpl();
+    }
+
 
     @Bean
     public CommonsMultipartResolver multipartResolver(){

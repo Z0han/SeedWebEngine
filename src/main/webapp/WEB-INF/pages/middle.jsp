@@ -26,15 +26,19 @@
         <div id="post${post.id}" name="post${post.id}">
             <a id="post-title" href="#" ><h3>${post.title}</h3></a>
             <div class="row" id="post-data">
+
                 <div class="col-lg-3" id="author" name="author">Posted by:
-                    <a href="/user?id=${post.authorId}">${post.authorNickName}</a>
+                    <a href="<c:url value="/user?id=${post.author.id}"/>">${post.author.nickname}</a>
+                </div>
+                <div class="col-lg-5" id="category">Category:
+                    <a href="<c:url value="/category?id=${post.category.id}"/>">${post.category.categoryName}</a>
                 </div>
                 <div class="col-lg-4" id="post-date" name="post-date">${post.datePosted}</div>
             </div>
             <hr/>
             <div class="col-lg-12" id="post-content" name="post-content">${post.text}</div>
-            <a class="btn btn-primary" id="more-link" href="/post?id=${post.id}">Читать далие</a>
-            <a class="btn btn-danger" id="delete" href="/delete?id=${post.id}">Delete</a>
+            <a class="btn btn-primary" id="more-link" href="<c:url value="/post?id=${post.id}"/>">Читать далие</a>
+            <a class="btn btn-danger" id="delete" href="<c:url value="/delete?id=${post.id}"/>">Delete</a>
             <hr/>
         </div>
     </c:forEach>

@@ -8,6 +8,6 @@ import com.company.entity.Settings;
 public interface SettingsDAO {
 
     Settings getSettings();
-    void setSettings(Settings settings);
+    void setSettings(String siteTitle, String sitePattern, String siteDescription);
 }
 

@@ -1,5 +1,6 @@
 package com.company.DAO;
 
+import com.company.entity.Category;
 import com.company.entity.Post;
 
 import java.util.Date;
@@ -16,5 +17,6 @@ public interface PostDAO {
     List<Post> getList();
     List<Post> getList(String pattern);
     Post getSinglePostById(int id);
+    List<Post> getListPostByCategory(Category category);
 
 }
